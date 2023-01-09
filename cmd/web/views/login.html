@@ -1,0 +1,14 @@
+{{define "content"}}
+    <form method="post" style="width: 30%;margin: 0 auto;background-color: #1e1e26 !important;padding: 40px;border-radius: 4px;text-align: center;color: #fff;box-shadow: 1px 1px 5px rgba(0,0,0,0.1);">
+        <div style="text-align: center;">
+            <img src="assets/img/lock.svg" style="float: none;margin-bottom: 2rem;width: 30%;"/>
+            <h1 id="login">Login</h1>
+        </div>
+        <label style="margin: 0px!important;float: left;">Username</label>
+        <input class="form-control" type="username">
+        <label style="margin: 0px!important;float: left;">Password</label>
+        <input class="form-control" type="password">
+        <button class="btn btn-primary" id="btn" type="button" style="width: 100%;margin: 0px;">Login</button>
+        <small>Don't have an account?&nbsp; Head on over to register your account now!</small>
+    </form>
+{{end}}

@@ -1,0 +1,219 @@
+{{define "title"}}
+    Dashboard
+{{end}}
+
+{{define "content"}}
+    <div class="row row-cols-3 align-items-start">
+        <div class="col-12 col-lg-6 col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <div>
+                        <img src="assets/img/clock.svg">
+                    </div>
+                    <div style="float: left;position: relative;">
+                        <h1 class="cardtitle">Current Time</h1>
+                        <h1 class="carddesc" id="currentTime">{{.CurrentTime}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <div><img src="assets/img/history.svg"></div>
+                    <div style="float: left;position: relative;">
+                        <h1 class="cardtitle">Runtime</h1>
+                        <h1 class="carddesc" id="runtime">{{.Runtime}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <div><img src="assets/img/harddisk.svg"></div>
+                    <div style="float: left;position: relative;">
+                        <h1 class="cardtitle">Module</h1>
+                        <h1 class="carddesc" id="module">{{.Module}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <div><img src="assets/img/tick.svg"></div>
+                    <div style="float: left;position: relative;">
+                        <h1 class="cardtitle">Requests</h1>
+                        <h1 class="carddesc" id="requests">{{.Requests}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <div><img src="assets/img/error.svg"></div>
+                    <div style="float: left;position: relative;">
+                        <h1 class="cardtitle">Errors</h1>
+                        <h1 class="carddesc" id="errors">{{.Errors}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <div><img src="assets/img/speed.svg"></div>
+                    <div style="float: left;position: relative;">
+                        <h1 class="cardtitle">RPS</h1>
+                        <h1 class="carddesc" id="rps">{{.RPS}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-3 align-items-start">
+        <div class="col-12 col-lg-6 col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <div><img src="assets/img/web.svg"></div>
+                    <div style="float: left;position: relative;">
+                        <h1 class="cardtitle">Urls</h1>
+                        <h1 class="carddesc" id="urls">{{.Urls}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <div><img src="assets/img/syringe.svg"></div>
+                    <div style="float: left;position: relative;">
+                        <h1 class="cardtitle">Injectables</h1>
+                        <h1 class="carddesc" id="injectables">{{.Injectables}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <div><img src="assets/img/folder.svg"></div>
+                    <div style="float: left;position: relative;">
+                        <h1 class="cardtitle">Rows</h1>
+                        <h1 class="carddesc">{{.Rows}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-2 align-items-start">
+        <div class="col-12 col-lg-6 col-xl-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 id="bottomcardtitle">Module Control</h4>
+                </div>
+                <div class="card-body" id="bottomc">
+                    <div style="text-align: center;">
+                        <button class="btn btn-primary" id="btn" type="button">Start Scraper</button>
+                        <button class="btn btn-primary" id="btn" type="button">Start Exploiter</button>
+                    </div>
+                    <div style="text-align: center;">
+                        <button class="btn btn-primary" id="btn" type="button">Start Dumper</button>
+                        <button class="btn btn-primary" id="btn" type="button">Stop</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-6">
+            <div class="card" style="min-height: 212px;">
+                <div class="card-header">
+                    <h6 class="text-muted mb-2" id="bottomcardtitle">Welcome!</h6>
+                </div>
+                <div class="card-body" id="bottomc">
+                    <p class="card-text" id="welcdesc">
+                        Welcome to XDumpGO, happy dumping, {{.Username}}!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{{end}}
+
+{{define "script"}}
+    <script>
+        function scraper() {
+            $.post('/module/scraper', {}, function(data, status){
+                let o = JSON.parse(data);
+                if (o.status === "success") {
+                    showSuccess(o.message)
+                } else {
+                    showError(o.message)
+                }
+            })
+        }
+        function exploiter() {
+            $.post('/module/exploiter', {}, function(data, status){
+                let o = JSON.parse(data);
+                if (o.status === "success") {
+                    showSuccess(o.message)
+                } else {
+                    showError(o.message)
+                }
+            })
+        }
+        function dumper() {
+            $.post('/module/dumper', {}, function(data, status){
+                let o = JSON.parse(data);
+                if (o.status === "success") {
+                    showSuccess(o.message)
+                } else {
+                    showError(o.message)
+                }
+            })
+        }
+
+        function stopModules() {
+            $.post('/module/stop', {}, function(data, status){
+                let o = JSON.parse(data);
+                if (o.status === "success") {
+                    showSuccess(o.message)
+                } else {
+                    showError(o.message)
+                }
+            })
+        }
+        window.onload = function () {
+            let conn;
+
+            function updateData(curstats) {
+                var now = Date.now();
+                $('#currentTime').text(now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds());
+                $('#runtime').text(curstats.Runtime)
+                $('#module').text(curstats.Module);
+                $('#requests').text(curstats.Requests);
+                $('#errors').text(curstats.Errors);
+                $('#rps').text(curstats.RPS);
+                $('#rows').text(curstats.Rows);
+                $('#urls').text(curstats.Urls);
+                $('#injectables').text(curstats.Injectables);
+                $('#timeRunning').text(curstats.Runtime);
+            }
+
+            if (window["WebSocket"]) {
+                conn = new WebSocket("ws://" + document.location.host + "/ws");
+                conn.onclose = function (evt) {
+                    // show error message
+                };
+                conn.onmessage = function (evt) {
+                    let data = JSON.parse(evt.data);
+                    console.log(data);
+                    updateData(data);
+                };
+            }
+
+            $('#dashboard').addClass('active');
+        };
+    </script>
+{{end}}
