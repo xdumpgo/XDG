@@ -1,0 +1,5 @@
+package tui
+
+func CreateAuthLogWidget() {
+
+}
