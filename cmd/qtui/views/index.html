@@ -1,0 +1,326 @@
+{{define "title"}}
+    Dashboard
+{{end}}
+
+{{define "content"}}
+    <div class="row">
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow border-left-primary py-2" style="background-color: #363636;">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span id="runTime">Runtime</span></div>
+                            <div class="text-dark font-weight-bold h5 mb-0"><span id="timeRunning" style="color: rgb(255,255,255);">{{.Runtime}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-6 mb-4">
+            <div class="card shadow border-left-info py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-info font-weight-bold text-xs mb-1"><span>Status: <span id="status">{{.Status}}</span></span></div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="text-dark font-weight-bold h5 mb-0 mr-3"><span id="progressPercent">{{.Index}}/{{.End}}</span></div>
+                                </div>
+                                <div class="col">
+                                    <div class="progress progress-sm">
+                                        <div class="progress-bar bg-info" aria-valuenow="{{.Progress}}" aria-valuemin="0" aria-valuemax="100" id="progressBar" style="width: 50%;">
+                                            <span class="sr-only" id="progressBarPercent">{{.Progress}}%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow border-left-warning py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span>Threads</span></div>
+                            <div class="text-dark font-weight-bold h5 mb-0"><span style="color: rgb(255,255,255);" id="threads">{{.Threads}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow border-left-primary py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Requests</span></div>
+                            <div class="text-dark font-weight-bold h5 mb-0"><span id="requests" style="color: rgb(255,255,255);">{{.Requests}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow border-left-danger py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span style="color: rgb(231,74,59);">Errors</span></div>
+                            <div class="text-dark font-weight-bold h5 mb-0"><span id="errors" style="color: rgb(255,255,255);">{{.Errors}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow border-left-info py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-info font-weight-bold text-xs mb-1"><span>RPS</span></div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="text-dark font-weight-bold h5 mb-0 mr-3"><span id="rps" style="color: rgb(255,255,255);">{{.RPS}}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow border-left-primary py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span style="color: rgb(78,115,223);">Urls</span></div>
+                            <div class="text-dark font-weight-bold h5 mb-0"><span id="urls" style="color: rgb(255,255,255);">{{.Urls}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow border-left-primary py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Tables</span></div>
+                            <div class="text-dark font-weight-bold h5 mb-0"><span id="tables" style="color: rgb(255,255,255);">{{.Tables}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow border-left-success py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span>Columns</span></div>
+                            <div class="text-dark font-weight-bold h5 mb-0"><span id="columns" style="color: rgb(255,255,255);">{{.Columns}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow border-left-info py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-info font-weight-bold text-xs mb-1"><span>Rows</span></div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="text-dark font-weight-bold h5 mb-0 mr-3"><span id="rows" style="color: rgb(255,255,255);">{{.Rows}}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3 mb-4">
+            <div class="card shadow border-left-warning py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span style="color: rgb(246,194,62);">Injectables</span></div>
+                            <div class="text-dark font-weight-bold h5 mb-0"><span id="injectables" style="color: rgb(255,255,255);">{{.Injectables}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><br/><br/>
+    <div class="row">
+        <div class="col">
+            <div class="card shadow border-left-primary py-2" style="border-left: 1px solid #e3e6f0!important;">
+                <div class="card-body">
+                    <h2 class="text-center" style="font-family: Montserrat, sans-serif;font-weight: 500;color: rgb(255,255,255);">Module Control</h2>
+                    <div class="row align-items-center no-gutters">
+                        <div class="col">
+                            <div class="row row-cols-3 align-content-center">
+                                    <button class="btn btn-primary" id="start-scraper" onclick="scraper()" type="button" style="margin-bottom: 10px;width: 150px;color: black;">Start Scraper</button>
+                                    <button class="btn btn-info" id="start-exploiter" onclick="exploiter()" type="button" style="margin-bottom: 10px;width: 150px;color: black;">Start Exploiter</button>
+                                    <button class="btn btn-warning" id="start-dumper" onclick="dumper()" type="button" style="margin-bottom: 10px;width: 150px;color: black;">Start Dumper</button>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-8 mx-auto">
+                                    <button class="btn btn-danger btn-block mx-auto" onclick="stopModules()" id="stop" type="button" style="max-width: 150px;color: black;">Stop</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center no-gutters">
+                        <div class="col-xl-12 text-center">
+                            <form>
+                                <div class="form-group">
+                                    <label>URL you wish to test</label>
+                                    <input type="url" class="form-control" placeholder="https://site.com/index.php?id=1" name="url" id="singleShotUrl"/>
+                                </div>
+
+                                <button class="btn btn-success" onclick="startSingleshot()" type="button">Start</button>
+                                <button class="btn btn-danger" onclick="stopSingleshot()" type="button">Stop</button>
+                            </form>
+                            <p id="singleShotOut"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header" style="background-color: #1e1e26;border-color: #4e4e4e!important;">
+                    <h5 class="mb-0" style="font-family: Montserrat, sans-serif;font-weight: 500;text-align: center;color: rgb(255,255,255);">Welcome!</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text" style="font-family: Montserrat, sans-serif;font-weight: 500;text-align: center;color: rgb(255,255,255);">Welcome to the XDumpGO WebUI!&nbsp; Please see the "Knowledgebase" link on the left for documentation on how to use this tool!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{{end}}
+
+{{define "script"}}
+<script>
+    function startSingleshot() {
+        $.post('/module/single', {"url": $('#singleShotUrl').val()}, function (data, status) {
+            let o = JSON.parse(data);
+            if (o.status === "success") {
+                showSuccess(o.message)
+            } else {
+                showError(o.message)
+            }
+        })
+    }
+
+    function stopSingleshot() {
+        $.post('/module/stop', {}, function(data, status){
+            let o = JSON.parse(data);
+            if (o.status === "success") {
+                showSuccess(o.message)
+            } else {
+                showError(o.message)
+            }
+        })
+    }
+
+    function scraper() {
+        $.post('/module/scraper', {}, function(data, status){
+            let o = JSON.parse(data);
+            if (o.status === "success") {
+                showSuccess(o.message)
+            } else {
+                showError(o.message)
+            }
+        })
+    };
+    function exploiter() {
+        $.post('/module/exploiter', {}, function(data, status){
+            let o = JSON.parse(data);
+            if (o.status === "success") {
+                showSuccess(o.message)
+            } else {
+                showError(o.message)
+            }
+        })
+    };
+    function dumper() {
+        $.post('/module/dumper', {}, function(data, status){
+            let o = JSON.parse(data);
+            if (o.status === "success") {
+                showSuccess(o.message)
+            } else {
+                showError(o.message)
+            }
+        })
+    };
+
+    function stopModules() {
+        $.post('/module/stop', {}, function(data, status){
+            let o = JSON.parse(data);
+            if (o.status === "success") {
+                showSuccess(o.message)
+            } else {
+                showError(o.message)
+            }
+        })
+    };
+    window.onload = function () {
+        let conn;
+
+        function updateData(curstats) {
+            let percent = 0;
+            if (curstats.Index > 0 && curstats.End > 0) {
+                percent = curstats.Index/curstats.End * 100;
+            }
+            $('#status').text(curstats.Status);
+            $('#progressPercent').text(curstats.Index+'/'+curstats.End);
+            $('#progressBar').attr('aria-valuenow', percent).css('width', percent + '%');
+            $('#threads').text(curstats.Threads);
+            $('#requests').text(curstats.Requests);
+            $('#errors').text(curstats.Errors);
+            $('#rps').text(curstats.RPS);
+            $('#tables').text(curstats.Tables);
+            $('#columns').text(curstats.Columns);
+            $('#rows').text(curstats.Rows);
+            $('#urls').text(curstats.Urls);
+            $('#injectables').text(curstats.Injectables);
+            $('#progressBarPercent').text(percent);
+            $('#timeRunning').text(curstats.Runtime);
+            let rStat = "Runtime";
+            if (curstats.Status === "Idle") {
+                rStat = "Current Time"
+            }
+            $('#runTime').text(rStat);
+
+            if (curstats.Message !== undefined) {
+                $('#singleShotOut').text(curstats.Message);
+            }
+        }
+
+        if (window["WebSocket"]) {
+            conn = new WebSocket("ws://" + document.location.host + "/ws");
+            conn.onclose = function (evt) {
+                // show error message
+            };
+            conn.onmessage = function (evt) {
+                let data = JSON.parse(evt.data);
+                console.log(data);
+                updateData(data);
+            };
+        }
+
+        $('#dashboard').addClass('active');
+    };
+</script>
+{{end}}

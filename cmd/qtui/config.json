@@ -1,0 +1,6 @@
+{
+  "core": {
+    "Threads": 100,
+    "Timeouts": 10
+  }
+}
