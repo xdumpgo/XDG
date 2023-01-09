@@ -1,0 +1,79 @@
+{{define "title"}}
+    Profile
+{{end}}
+
+{{define "content"}}
+    <div class="row mb-3">
+        <div class="col-lg-4">
+            <div class="card mb-3"></div>
+            <div class="card shadow mb-4">
+                <div class="card-header py-3" style="background-color: #1e1e26 !important;">
+                    <h6 class="text-primary font-weight-bold m-0">Info</h6>
+                </div>
+                <div class="card-body">
+                    <h5>Your license is valid until</h5>
+                    <p style="color: rgb(255,255,255);">{{.Expiry}}</p><button class="btn btn-primary" type="button">Get New Key</button></div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="row mb-3 d-none">
+                <div class="col">
+                    <div class="card text-white bg-primary shadow">
+                        <div class="card-body">
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <p class="m-0">Peformance</p>
+                                    <p class="m-0"><strong>65.2%</strong></p>
+                                </div>
+                                <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
+                            </div>
+                            <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-white bg-success shadow">
+                        <div class="card-body">
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <p class="m-0">Peformance</p>
+                                    <p class="m-0"><strong>65.2%</strong></p>
+                                </div>
+                                <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
+                            </div>
+                            <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card shadow mb-3">
+                        <div class="card-header py-3" style="background-color: #1e1e26 !important;">
+                            <p class="text-primary m-0 font-weight-bold">User Settings</p>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group"><label for="first_name"><strong>Old Password</strong></label><input class="form-control" type="password" name="curPass" placeholder="Old Password" disabled="" style="background-color: #1e1e26 !important;"></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group"><label for="last_name"><strong>New Password</strong></label><input class="form-control" type="password" disabled="" name="newPass" placeholder="Stronk Password" style="background-color: #1e1e26 !important;"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group"><button class="btn btn-primary btn-sm" type="submit" disabled="">Update Password</button></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{end}}
+
+{{define "script"}}
+    <script>
+        $('#profile').addClass('active');
+    </script>
+{{end}}

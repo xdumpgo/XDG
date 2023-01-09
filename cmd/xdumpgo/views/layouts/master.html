@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{{template "title" .}} - XDG</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat+Alternates">
+    <link rel="stylesheet" href="assets/css/montserratbold.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="assets/css/checkbox.css">
+</head>
+
+<body id="page-top">
+<div id="wrapper">
+    <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background-color: #16161f !important;background-image: none;">
+        <div class="container-fluid d-flex flex-column p-0">
+            <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                <div class="sidebar-brand-text mx-3"><span style="font-size: 32px;font-family: 'montserratbold';">XDG {{.Version}}</span></div>
+            </a>
+            <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="/">
+                        <i class="icon-speedometer" style="font-size: 18px;"></i>
+                        <span style="font-family: Montserrat, sans-serif;font-weight: 500;font-size: 18px;color: #ffffff;">&nbsp;Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="/data">
+                        <i class="icon-social-dropbox" style="font-size: 18px;"></i>
+                        <span style="font-size: 18px;color: #ffffff;">&nbsp;Data</span>
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <div class="nav-item dropdown show">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#" style="font-size: 18px;color: #ffffff;">
+                            <i class="fas fa-tools" style="font-size: 18px;"></i>&nbsp;
+                            <span style="color: #ffffff;font-size: 18px;"> Utils</span>
+                        </a>
+                        <div class="dropdown-menu show" role="menu" style="background-color: #1e1e26!important;border-color: transparent;">
+                            <a class="dropdown-item" role="presentation" href="/clean" style="color: #ffffff;font-size: 16px;font-family: Montserrat, sans-serif;font-weight: 500;">&nbsp;Clean Urls</a>
+                            <a class="dropdown-item" role="presentation" href="#" style="color: #ffffff;font-weight: 500;font-family: Montserrat, sans-serif;font-size: 16px;">&nbsp;Parse Dump</a>
+                        </div>
+                    </div>
+                    <a class="nav-link" href="https://git.zertex.space/Zertex/XDumpGO/wiki">
+                        <i class="icon-book-open" style="font-size: 18px;"></i>
+                        <span style="font-size: 18px;color: #ffffff;">&nbsp;Knowledgebase</span>
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="/settings">
+                        <i class="icon-settings" style="font-size: 18px;"></i>
+                        <span style="font-size: 18px;color: #ffffff;">&nbsp;Settings</span>
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="/profile">
+                        <i class="icon-user" style="font-size: 18px;"></i>
+                        <span style="font-size: 18px;color: #ffffff;">&nbsp;Profile</span>
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="https://discord.gg/xtbxt4v">
+                        <i class="fab fa-discord" style="font-size: 18px;"></i>
+                        <span style="font-size: 18px;color: #ffffff;">&nbsp;Discord</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="d-flex flex-column" id="content-wrapper">
+        <div id="content" style="background-color: #16161f!important;">
+            <div class="container-fluid" style="background-color: #16161f!important;">
+                <div class="d-sm-flex justify-content-between align-items-center mb-4" style="margin-top: 40px;">
+                    <h3 class="text-dark mb-0" style="font-family: Montserrat, sans-serif;font-weight: 500;color: rgb(255,255,255)!important;">{{template "title" .}}</h3>
+                </div>
+                <div id="alerts"></div>
+                <div>
+                    {{template "content" .}}
+                </div>
+            </div>
+        </div>
+        <footer class="bg-white sticky-footer" style="background-color: #16161f!important;">
+            <div class="container my-auto">
+                <div class="text-center my-auto copyright"><span style="font-family: Montserrat, sans-serif;font-size: 16px;font-weight: 500;color: rgb(255,255,255);">Created with &lt;3 by Zertex#0001</span></div>
+            </div>
+        </footer>
+    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/chart.min.js"></script>
+<script src="assets/js/bs-init.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+<script src="assets/js/theme.js"></script>
+<script>
+    function showError(message) {
+        $('#alerts').append('<div class="alert alert-danger alert-dismissible fade show" role="alert">\n' +
+            '  <strong>ERROR</strong>: '+message+'.\n' +
+            '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n' +
+            '    <span aria-hidden="true">&times;</span>\n' +
+            '  </button>\n' +
+            '</div>')
+    }
+
+    function showSuccess(message) {
+        $('#alerts').append('<div class="alert alert-success alert-dismissible fade show" role="alert">\n' +
+            '  <strong>SUCCESS</strong>: '+message+'.\n' +
+            '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n' +
+            '    <span aria-hidden="true">&times;</span>\n' +
+            '  </button>\n' +
+            '</div>')
+    }
+</script>
+{{template "script" .}}
+</body>
+
+</html>

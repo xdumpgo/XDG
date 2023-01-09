@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{{template "title" .}} - XDG</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat+Alternates">
+    <link rel="stylesheet" href="assets/css/montserratbold.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="assets/css/checkbox.css">
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background-color: #16161f !important;background-image: none;">
+            <div class="container-fluid d-flex flex-column p-0">
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                    <div class="sidebar-brand-text mx-3"><span style="font-size: 32px;font-family: 'montserratbold';">XDG {{.Version}}</span></div>
+                </a>
+                <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="/">
+                            <i class="icon-speedometer" style="font-size: 18px;"></i>
+                            <span style="font-family: Montserrat, sans-serif;font-weight: 500;font-size: 18px;color: #ffffff;">&nbsp;Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="/data">
+                            <i class="icon-social-dropbox" style="font-size: 18px;"></i>
+                            <span style="font-size: 18px;color: #ffffff;">&nbsp;Data</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <div class="nav-item dropdown show">
+                            <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#" style="font-size: 18px;color: #ffffff;">
+                                <i class="fas fa-tools" style="font-size: 18px;"></i>&nbsp;
+                                <span style="color: #ffffff;font-size: 18px;"> Utils</span>
+                            </a>
+                            <div class="dropdown-menu show" role="menu" style="background-color: #1e1e26!important;border-color: transparent;">
+                                <a class="dropdown-item" role="presentation" href="/clean" style="color: #ffffff;font-size: 16px;font-family: Montserrat, sans-serif;font-weight: 500;">&nbsp;Clean Urls</a>
+                                <a class="dropdown-item" role="presentation" href="#" style="color: #ffffff;font-weight: 500;font-family: Montserrat, sans-serif;font-size: 16px;">&nbsp;Parse Dump</a>
+                            </div>
+                        </div>
+                        <a class="nav-link" href="https://git.zertex.space/Zertex/XDumpGO/wiki">
+                            <i class="icon-book-open" style="font-size: 18px;"></i>
+                            <span style="font-size: 18px;color: #ffffff;">&nbsp;Knowledgebase</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="/settings">
+                            <i class="icon-settings" style="font-size: 18px;"></i>
+                            <span style="font-size: 18px;color: #ffffff;">&nbsp;Settings</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="/profile">
+                            <i class="icon-user" style="font-size: 18px;"></i>
+                            <span style="font-size: 18px;color: #ffffff;">&nbsp;Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="https://discord.gg/xtbxt4v">
+                            <i class="fab fa-discord" style="font-size: 18px;"></i>
+                            <span style="font-size: 18px;color: #ffffff;">&nbsp;Discord</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content" style="background-color: #16161f!important;">
+                <div class="container-fluid" style="background-color: #16161f!important;">
+                    <div class="d-sm-flex justify-content-between align-items-center mb-4" style="margin-top: 40px;">
+                        <h3 class="text-dark mb-0" style="font-family: Montserrat, sans-serif;font-weight: 500;color: rgb(255,255,255)!important;">{{template "title" .}}</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-left-primary py-2" style="background-color: #363636;">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col mr-2">
+                                            <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span id="NAME">Proxies</span></div>
+                                            <div class="text-dark font-weight-bold h5 mb-0"><span id="proxies" style="color: rgb(255,255,255);">20,000</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-left-success py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col mr-2">
+                                            <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span id="NAME">Dorks</span></div>
+                                            <div class="text-dark font-weight-bold h5 mb-0"><span id="dorks" style="color: rgb(255,255,255);">123,456</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-left-info py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col mr-2">
+                                            <div class="text-uppercase text-info font-weight-bold text-xs mb-1"><span id="NAME">Status: Scraping</span></div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="text-dark font-weight-bold h5 mb-0 mr-3"><span id="progressPercent" style="color: rgb(255,255,255);">50%</span></div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="progress progress-sm">
+                                                        <div class="progress-bar bg-info" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" id="progressBar" style="width: 50%;"><span class="sr-only" id="progressBarPercent">50%</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-left-warning py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col mr-2">
+                                            <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span id="NAME">Threads</span></div>
+                                            <div class="text-dark font-weight-bold h5 mb-0"><span style="color: rgb(255,255,255);">100</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-left-primary py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col mr-2">
+                                            <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span id="NAME">Requests</span></div>
+                                            <div class="text-dark font-weight-bold h5 mb-0"><span id="requests" style="color: rgb(255,255,255);">480,888</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-left-danger py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col mr-2">
+                                            <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span id="NAME" style="color: rgb(231,74,59);">Errors</span></div>
+                                            <div class="text-dark font-weight-bold h5 mb-0"><span id="errors" style="color: rgb(255,255,255);">123,456</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-left-info py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col mr-2">
+                                            <div class="text-uppercase text-info font-weight-bold text-xs mb-1"><span id="NAME">RPS</span></div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="text-dark font-weight-bold h5 mb-0 mr-3"><span id="rps" style="color: rgb(255,255,255);">870</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-left-primary py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col mr-2">
+                                            <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span id="NAME" style="color: rgb(78,115,223);">Urls</span></div>
+                                            <div class="text-dark font-weight-bold h5 mb-0"><span id="urls" style="color: rgb(255,255,255);">127,165</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-left-primary py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col mr-2">
+                                            <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span id="NAME">Tables</span></div>
+                                            <div class="text-dark font-weight-bold h5 mb-0"><span id="tables" style="color: rgb(255,255,255);">20,000</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-left-success py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col mr-2">
+                                            <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span id="NAME">Columns</span></div>
+                                            <div class="text-dark font-weight-bold h5 mb-0"><span id="columns" style="color: rgb(255,255,255);">123,456</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-left-info py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col mr-2">
+                                            <div class="text-uppercase text-info font-weight-bold text-xs mb-1"><span id="NAME">Rows</span></div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="text-dark font-weight-bold h5 mb-0 mr-3"><span id="rows" style="color: rgb(255,255,255);">50%</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-left-warning py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col mr-2">
+                                            <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span id="NAME" style="color: rgb(246,194,62);">Injectables</span></div>
+                                            <div class="text-dark font-weight-bold h5 mb-0"><span id="injectables" style="color: rgb(255,255,255);">100</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br/><br/>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card shadow border-left-primary py-2" style="border-left: 1px solid #e3e6f0!important;">
+                                <div class="card-body">
+                                    <h2 class="text-center" style="font-family: 'montserratbold';font-weight: 500;color: rgb(255,255,255);">Module Control</h2>
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col">
+                                            <div class="row row-cols-3 align-content-center">
+                                                <div class="col-xl-12 text-center"><button class="btn btn-primary" id="start-scraper" type="button" style="margin-bottom: 10px;width: 150px;color: black;">Start Scraper</button></div>
+                                                <div class="col-xl-12 text-center"><button class="btn btn-info" id="start-exploiter" type="button" style="margin-bottom: 10px;width: 150px;color: black;">Start Exploiter</button></div>
+                                                <div class="col-xl-12 text-center" style="color: black;"><button class="btn btn-warning" id="start-dumper" type="button" style="margin-bottom: 10px;width: 150px;color: black;">Start Dumper</button></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-8 mx-auto"><button class="btn btn-danger btn-block mx-auto" id="stop" type="button" style="max-width: 150px;color: black;">Stop</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header" style="background-color: #1e1e26;border-color: #4e4e4e!important;">
+                                    <h5 class="mb-0" style="font-family: Montserrat, sans-serif;font-weight: 500;text-align: center;color: rgb(255,255,255);">Welcome!</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text" style="font-family: Montserrat, sans-serif;font-weight: 500;text-align: center;color: rgb(255,255,255);">Welcome to the XDumpGO WebUI!&nbsp; Please see the "Knowledgebase" link on the left for documentation on how to use this tool!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="bg-white sticky-footer" style="background-color: #16161f!important;">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span style="font-family: Montserrat, sans-serif;font-size: 16px;font-weight: 500;color: rgb(255,255,255);">Created with &lt;3 by Zertex#0001</span></div>
+                </div>
+            </footer>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/chart.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+
+</html>

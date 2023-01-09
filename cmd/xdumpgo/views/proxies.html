@@ -1,0 +1,122 @@
+{{define "title"}}
+    Proxy Tester
+{{end}}
+
+{{define "content"}}
+<div class="row">
+    <div class="col">
+        <div class="card shadow border-left-primary py-2" style="background-color: #363636;">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-center text-primary font-weight-bold text-xs mb-1"><span>Controls</span></div>
+                        <div class="text-center text-dark font-weight-bold h5 mb-0"><button class="btn btn-success" type="button" onclick="start()">Start</button><button class="btn btn-danger" type="button" onclick="stop()">Stop</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="card shadow border-left-info py-2" style="background-color: #363636;">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-info font-weight-bold text-xs mb-1"><span>Progress</span></div>
+                        <div class="text-dark font-weight-bold h5 mb-0" id="progress"><span id="progress" style="color: rgb(255,255,255);">0/0</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card shadow border-left-primary py-2" style="background-color: #363636;">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Total</span></div>
+                        <div class="text-dark font-weight-bold h5 mb-0"><span id="total" style="color: rgb(255,255,255);">0</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="card shadow border-left-success py-2" style="background-color: #363636;">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span>Living</span></div>
+                        <div class="text-dark font-weight-bold h5 mb-0"><span id="living" style="color: rgb(255,255,255);">0</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card shadow border-left-danger py-2" style="background-color: #363636;">
+            <div class="card-body">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-danger font-weight-bold text-xs mb-1"><span>Dead</span></div>
+                        <div class="text-dark font-weight-bold h5 mb-0"><span id="dead" style="color: rgb(255,255,255);">0</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "script"}}
+<script>
+    function start() {
+        $.post('/module/proxies', {}, function(data, status){
+            let o = JSON.parse(data);
+            if (o.status === "success") {
+                showSuccess(o.message)
+            } else {
+                showError(o.message)
+            }
+        })
+    };
+
+    function stop() {
+        $.post('/module/stop', {}, function(data, status){
+            let o = JSON.parse(data);
+            if (o.status === "success") {
+                showSuccess(o.message)
+            } else {
+                showError(o.message)
+            }
+        })
+    };
+    window.onload = function () {
+        let conn;
+
+        function updateData(curstats) {
+            $('#progress').text(curstats.Index+'/'+curstats.End);
+            $('#total').text(curstats.End);
+            $('#living').text(curstats.Living);
+            $('#dead').text(curstats.Dead)
+        }
+
+        if (window["WebSocket"]) {
+            conn = new WebSocket("ws://" + document.location.host + "/wsp");
+            conn.onclose = function (evt) {
+            // show error message
+            };
+            conn.onmessage = function (evt) {
+                let data = JSON.parse(evt.data);
+                console.log(data);
+                updateData(data);
+            };
+        }
+
+        $('#proxytest').addClass('active');
+    };
+</script>
+{{end}}

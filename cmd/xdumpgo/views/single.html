@@ -1,0 +1,76 @@
+{{define "title"}}
+    Single Test
+{{end}}
+
+{{define "content"}}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="text-primary font-weight-bold m-0">Test</h6>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>URL you wish to test</label>
+                            <input type="url" class="form-control" placeholder="https://site.com/index.php?id=1" name="url" />
+                        </div>
+                    </div>
+                    <div class="col-xl-2 text-center">
+                        <button class="btn btn-success" onclick="startSingleshot()" type="button">Start</button>
+                        <button class="btn btn-danger" onclick="stopSingleshot()" type="button">Stop</button>
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+                Status:&nbsp;<div id="status">Idle</div>
+            </div>
+        </div>
+    </div>
+{{end}}
+
+{{define "script"}}
+<script>
+    function startSingleshot() {
+        $.post('/module/single', {}, function (data, status) {
+            let o = JSON.parse(data);
+            if (o.status === "success") {
+                $('#status').text('Testing...');
+                showSuccess(o.message)
+            } else {
+                showError(o.message)
+            }
+        })
+    }
+
+    function stopSingleshot() {
+        $.post('/module/stop', {}, function(data, status){
+            let o = JSON.parse(data);
+            if (o.status === "success") {
+                showSuccess(o.message)
+            } else {
+                showError(o.message)
+            }
+        })
+    }
+
+    window.onload = function () {
+        let conn;
+
+        function updateData(data) {
+            //$('#output').text($('#output').text() + data.message);
+            $('#status').text(data.message)
+        }
+
+        if (window["WebSocket"]) {
+            conn = new WebSocket("ws://" + document.location.host + "/ws");
+            conn.onclose = function (evt) {
+                // show error message
+            };
+            conn.onmessage = function (evt) {
+                updateData(JSON.parse(evt.data));
+            };
+        }
+    }
+</script>
+{{end}}

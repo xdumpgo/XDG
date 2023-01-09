@@ -1,0 +1,212 @@
+{{define "title"}}
+    Data
+{{end}}
+
+{{define "content"}}
+<div class="row">
+    <div class="card shadow border-left-primary py-2">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-xl-6">
+                    <h1 style="font-family: 'montserratbold';font-weight: 500;color: rgb(255,255,255);">Proxies</h1>
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-dark font-weight-bold h5 mb-0" style="font-family: Montserrat, sans-serif;font-weight: 500;color: rgb(255,255,255)!important;margin-bottom: 10px!important;">
+                                <span>Loaded:&nbsp;</span>
+                                <span id="proxies">{{ .Proxies }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <form action="/load/proxies" method="POST" name="loadProxies" id="loadProxies" enctype="multipart/form-data"></form>
+                        <div class="col">
+                            <div class="row">
+                                <select class="custom-select" name="proxyType" id="proxyType" form="loadProxies" style="font-family: Montserrat, sans-serif;font-weight: 500;">
+                                    <option value="0" selected>HTTP</option>
+                                    <option value="1">SOCKS4</option>
+                                    <option value="2">SOCKS5</option>
+                                </select>
+                            </div>
+                            <div class="row">
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="proxiesFilename" id="proxiesFilename" form="loadProxies">
+                                        <label class="custom-file-label" for="proxiesFilename">Choose file</label>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" type="submit" form="loadProxies" style="width: 85px;font-family: Montserrat, sans-serif;font-weight: 500;">Load</button>
+                                <button class="btn btn-danger" onclick="unloadProxies()" type="button" style="margin-left: 10px;width: 85px;font-family: Montserrat, sans-serif;font-weight: 500;">Unload</button>
+                            </div>
+                        </div>
+                        <div class="col">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <h1 style="color: rgb(255,255,255);font-family: 'montserratbold';font-weight: 500;">Dorks</h1>
+                    <div class="row align-items-center no-gutters" style="margin-bottom: 10px;">
+                        <div class="col mr-2">
+                            <div class="text-dark font-weight-bold h5 mb-0" style="color: rgb(255,255,255)!important;font-family: Montserrat, sans-serif;font-weight: 500;">
+                                <span>Loaded:&nbsp;</span>
+                                <span id="dorks">{{ .Dorks }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <form action="/load/dorks" method="POST" name="loadDorks" id="loadDorks" enctype="multipart/form-data"></form>
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="dorksFilename" id="dorksFilename" form="loadDorks">
+                                    <label class="custom-file-label" for="dorksFilename">Choose file</label>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" type="submit" form="loadDorks" style="width: 85px;font-weight: 500;">Load</button>
+                            <button class="btn btn-danger" onclick="unloadDorks()" type="button" style="width: 85px;margin-left: 10px;font-family: Montserrat, sans-serif;font-weight: 500;">Unload</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="card shadow border-left-primary py-2">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-xl-6">
+                    <h1 style="color: rgb(255,255,255);font-family: 'montserratbold';font-weight: 500;">Urls</h1>
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-dark font-weight-bold h5 mb-0" style="font-family: Montserrat, sans-serif;font-weight: 500;color: rgb(255,255,255)!important;margin-bottom: 10px!important;">
+                                <span>Loaded:&nbsp;</span>
+                                <span id="proxies">{{ .Urls }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <form action="/load/urls" method="POST" name="loadUrls" id="loadUrls" enctype="multipart/form-data"></form>
+                        <div class="col">
+                            <div class="row">
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="urlsFilename" id="urlsFilename" form="loadUrls">
+                                        <label class="custom-file-label" for="proxiesFilename">Choose file</label>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" type="submit" form="loadUrls" style="width: 85px;font-weight: 500;">Load</button>
+                                <button class="btn btn-danger" onclick="unloadUrls()" type="button" style="width: 85px;margin-left: 10px;font-family: Montserrat, sans-serif;font-weight: 500;">Unload</button>
+                            </div>
+                        </div>
+                        <div class="col">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <h1 style="color: rgb(255,255,255);font-family: 'montserratbold';font-weight: 500;">Injectables</h1>
+                    <div class="row align-items-center no-gutters">
+                        <div class="col mr-2">
+                            <div class="text-dark font-weight-bold h5 mb-0" style="font-family: Montserrat, sans-serif;font-weight: 500;color: rgb(255,255,255)!important;margin-bottom: 10px!important;">
+                                <span>Loaded:&nbsp;</span>
+                                <span id="dorks">{{ .Injectables }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <form action="/load/injectables" method="POST" name="loadInjectables" id="loadInjectables" enctype="multipart/form-data"></form>
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="injectablesFilename" id="injectablesFilename" form="loadInjectables">
+                                    <label class="custom-file-label" for="dorksFilename">Choose file</label>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" type="submit" form="loadInjectables" style="width: 85px;font-weight: 500;">Load</button>
+                            <button class="btn btn-danger" onclick="unloadInjectables()" type="button" style="width: 85px;margin-left: 10px;font-family: Montserrat, sans-serif;font-weight: 500;">Unload</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "script"}}
+    <script>
+        function showError(message) {
+            $('#alerts').append('<div class="alert alert-danger alert-dismissible fade show" role="alert">\n' +
+                '  <strong>ERROR</strong>: '+message+'.\n' +
+                '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n' +
+                '    <span aria-hidden="true">&times;</span>\n' +
+                '  </button>\n' +
+                '</div>')
+        }
+
+        function showSuccess(message) {
+            $('#alerts').append('<div class="alert alert-success alert-dismissible fade show" role="alert">\n' +
+                '  <strong>SUCCESS</strong>: '+message+'.\n' +
+                '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n' +
+                '    <span aria-hidden="true">&times;</span>\n' +
+                '  </button>\n' +
+                '</div>')
+        }
+
+        function unloadProxies() {
+            $.ajax({ url: `/uload/proxies`, method: "DELETE" })
+                .then(function (data) {
+                    let o = JSON.parse(data);
+                    if (o.status === "success") {
+                        $('#proxies').text('0');
+                        showSuccess(o.message)
+                    } else {
+                        showError(o.message)
+                    }
+                });
+        }
+
+        function unloadDorks() {
+            $.ajax({ url: `/uload/dorks`, method: "DELETE" })
+                .then(function (data) {
+                    let o = JSON.parse(data);
+                    if (o.status === "success") {
+                        $('#dorks').text('0');
+                        showSuccess(o.message)
+                    } else {
+                        showError(o.message)
+                    }
+                });
+        }
+
+        function unloadUrls() {
+            $.ajax({ url: `/uload/urls`, method: "DELETE" })
+                .then(function (data) {
+                    let o = JSON.parse(data);
+                    if (o.status === "success") {
+                        $('#dorks').text('0');
+                        showSuccess(o.message)
+                    } else {
+                        showError(o.message)
+                    }
+                });
+        }
+
+        function unloadInjectables() {
+            $.ajax({ url: `/uload/injectables`, method: "DELETE" })
+                .then(function (data) {
+                    let o = JSON.parse(data);
+                    if (o.status === "success") {
+                        $('#dorks').text('0');
+                        showSuccess(o.message)
+                    } else {
+                        showError(o.message)
+                    }
+                });
+        }
+
+        window.onload = function () {
+            $('#data').addClass('active');
+        }
+    </script>
+{{end}}

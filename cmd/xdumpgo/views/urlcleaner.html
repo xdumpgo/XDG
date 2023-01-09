@@ -1,0 +1,50 @@
+{{define "title"}}
+    URL Cleaner
+{{end}}
+
+{{define "content"}}
+    <div class="card shadow border-left-primary py-2">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-xl-6">
+                    <h3>Loaded Urls ({{.UrlsCount}})</h3>
+                    <h3>Blacklist Urls</h3>
+                    <textarea name="blacklistUrls" readonly placeholder="Enter blacklist hostnames here. ex: .gov, youtube.com" rows="10" cols="45">.gov, youtube.com</textarea>
+                </div>
+                <div class="col">
+                    <form action="/clean" method="POST">
+                        <div class="form-row">
+                            <div class="col">
+                                <label class="checkbox">
+                                    <input type="checkbox" id="dupeDomain" name="dupeDomain" />
+                                    <span class="checkbox-check"></span>
+                                    Remove duplicate domains
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" id="nonQueries" name="nonQueries" />
+                                    <span class="checkbox-check"></span>
+                                    Remove non-queries
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" id="blacklist" name="blacklist" />
+                                    <span class="checkbox-check"></span>
+                                    Blacklist (DISABLED)
+                                </label>
+                            </div>
+                            <div class="col">
+
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <button class="btn btn-success" type="submit">Clean Urls</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{{end}}
+
+{{define "script"}}{{end}}

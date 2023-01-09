@@ -1,0 +1,112 @@
+{{define "title"}}
+    Settings
+{{end}}
+
+{{define "content"}}
+<div class="row">
+    <div class="col">
+        <div class="card shadow border-left-primary py-2">
+            <div class="card-body">
+                <h1>Main</h1>
+                <form method="POST" action="/settings/main">
+                    <div class="form-row">
+                        <div class="col-xl-6">
+                            <div class="form-group row"><label class="col-sm-3 col-form-label" for="threads">Threads</label>
+                                <div class="col-sm-9"><input class="form-control" type="number" id="threads" name="threads" value="{{.Threads}}" min="1" max="500"></div>
+                            </div>
+                            <div class="form-group row"><label class="col-sm-3 col-form-label" for="pages">Pages</label>
+                                <div class="col-sm-9"><input class="form-control" type="number" id="pages" name="pages" value="{{.Pages}}" min="1" max="50"></div>
+                            </div>
+                            <div class="form-group row"><label class="col-sm-3 col-form-label" for="threads">Timeouts</label>
+                                <div class="col-sm-9"><input class="form-control" type="number" id="timeouts" name="timeouts" value="{{.Timeouts}}" min="1" max="30"></div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label class="checkbox">
+                                <input type="checkbox" name="autoThreads" id="autoThreads"{{if eq .AutoThreads true}} checked {{end}}>
+                                <span class="checkbox-check"></span>
+                                Auto Threading
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="targetedDump" id="targetedDump"{{if eq .TargetedDump true}} checked {{end}}>
+                                <span class="checkbox-check"></span>
+                                Targeted Dump
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="batchMode" id="batchMode"{{if eq .BatchMode true}} checked {{end}}>
+                                <span class="checkbox-check"></span>
+                                Batch Mode
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="batchMode" id="batchMode"{{if eq .KeepBlanks true}} checked {{end}}>
+                                <span class="checkbox-check"></span>
+                                Keep Blanks
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card shadow border-left-primary py-2">
+            <div class="card-body">
+                <h1>Techniques</h1>
+                <form method="POST" action="/settings/tech">
+                    <div class="form-row">
+                        <div class="col-xl-6">
+                            <div class="form-group row"><label class="col-sm-3 col-form-label" for="threads">Intensity</label>
+                                <div class="col-sm-9">
+                                    <select class="custom-select" name="intensityLevel" id="intensityLevel" required="">
+                                        <optgroup label="Intensity">
+                                            <option value="0"{{if eq .Intensity 0}} selected {{end}}>Basic</option>
+                                            <option value="1"{{if eq .Intensity 1}} selected {{end}}>Intense</option>
+                                            <option value="2"{{if eq .Intensity 2}} selected {{end}}>Excessive</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col"><label class="checkbox">
+                          <input type="checkbox" name="techError" id="techError" {{if eq .Error true}} checked {{end}}>
+                          <span class="checkbox-check"></span>
+                            Error
+                        </label><label class="checkbox">
+                          <input type="checkbox" name="techUnion" id="techUnion" {{if eq .Union true}} checked {{end}}>
+                          <span class="checkbox-check"></span>
+                            Union
+                        </label><label class="checkbox">
+                          <input type="checkbox" name="techBlind" id="techBlind" {{if eq .Blind true}} checked {{end}}>
+                          <span class="checkbox-check"></span>
+                            Blind
+                        </label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card shadow border-left-primary py-2">
+            <div class="card-body">
+                <h1>Dorkers</h1>
+                <form method="POST" action="/settings/dorkers">
+                    {{range .Dorkers}}
+                        <label class="checkbox">
+                            <input type="checkbox" name="{{.Name}}" {{if .Enabled}} checked {{end}}/>
+                            <span class="checkbox-check"></span>
+                            {{.Name}}
+                        </label>
+                    {{end}}
+                    <button class="btn btn-success" type="submit">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{define "script"}}s
+{{end}}

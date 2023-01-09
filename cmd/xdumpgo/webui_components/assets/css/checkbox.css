@@ -1,0 +1,127 @@
+.checkbox {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  font-size: 15px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  line-height: 27px;
+}
+
+.checkbox input {
+  position: absolute;
+  opacity: 0;
+}
+
+.checkbox-check {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #565656!important;
+  border-radius: 6px;
+  border: 1px solid #e3ebee;
+  transition: all 0.3s ease;
+}
+
+.checkbox:hover input ~ .checkbox-check {
+  background-color: #ffffff;
+}
+
+.checkbox input:checked ~ .checkbox-check {
+  background-color: #16161f !important;
+}
+
+.checkbox input:checked ~ .checkbox-check:after {
+  display: block;
+}
+
+.checkbox-check:after {
+  top: -1px;
+  left: 5px;
+  content: "✔";
+  position: absolute;
+  display: none;
+  font-size: 18px;
+  color: #fff;
+}
+
+span {
+  font-weight: 500;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+  background-color: #414141;
+}
+
+.card {
+  background-color: #1e1e26!important;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+.text-dark.font-weight-bold.h5.mb-0 {
+  color: white!important;
+}
+
+.h1, h1 {
+  color: white;
+}
+
+.col-sm-3.col-form-label {
+  color: white;
+}
+
+#threads {
+  color: white;
+}
+
+.checkbox {
+  color: white;
+}
+
+.h5, h5 {
+  color: white;
+}
+
+label {
+  color: white;
+}
+
+#NAME {
+  font-family: 'montserratbold';
+  text-transform: uppercase;
+}
+
+.dropdown-item:hover {
+  background-color: #1e1e26!important;
+}
+
+#wrapper #content-wrapper #content {
+  background: #16161f !important;
+}
+
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+  background: #16161f !important;
+}
+
+@media (max-width: 576px) {
+  .dropdown .dropdown-menu {
+    min-width: 21px!important;
+    max-width: 100px!important;
+  }
+}
+
+@media (max-width: 576px) {
+  .dropdown-item {
+    margin-left: -10px;
+    font-size: 12px!important;
+  }
+}
+
